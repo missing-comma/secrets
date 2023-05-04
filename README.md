@@ -16,6 +16,9 @@ $ npm install --global @missing-comma/secrets
 - Enhance the "--help" output for the commands
 - Organize the root directories
 - Organize the /ui/components directories
+- Add unit tests
+- Add integration tests
+- Configure publish command (without skipping the lint and test command)
 
 ## CLI
 

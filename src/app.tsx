@@ -1,19 +1,14 @@
 import React from 'react';
-import {Text} from 'ink';
 import COMMANDS from './commands/index.js';
-import {withErrorHandler} from './ui/components/error-handler/index.js';
+import { withErrorHandler } from './ui/components/error-handler/index.js';
 
 type Props = {
 	command: keyof typeof COMMANDS.ALL;
 };
 
-export default withErrorHandler(function App({command}: Props) {
-	const {Render} = COMMANDS.ALL[command];
+export default withErrorHandler(function App({ command }: Props) {
+	const { Render } = COMMANDS.ALL[command];
 	if (Render) return <Render />;
 
-	return (
-		<Text>
-			Hello, <Text color="green">fuck</Text>
-		</Text>
-	);
+	return null;
 });

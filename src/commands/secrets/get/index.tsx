@@ -1,5 +1,5 @@
 import React from 'react';
-import {Command} from '../../../data/command/index.js';
+import { Command } from '../../../data/command/index.js';
 import factory from './dependencies.js';
 import PrivateGetCommand from './render.js';
 
@@ -18,7 +18,7 @@ export default {
 	load: () => factory.load(),
 	Render: () => {
 		const cli = command.parse();
-		const {key, ...props} = cli;
+		const { key, ...props } = cli;
 		return <PrivateGetCommand {...props} name={cli.key} />;
 	},
 };

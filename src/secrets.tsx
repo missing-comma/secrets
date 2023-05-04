@@ -28,4 +28,4 @@ const { command, verbose } = cmd.parse();
 Config.verbose.meta.set(verbose);
 COMMANDS.ALL[command].load();
 
-() => render(<App command={command} />);
+render(<App command={command} />);

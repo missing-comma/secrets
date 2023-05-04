@@ -1,15 +1,9 @@
-export type Handler<
-	Event extends string,
-	Listener extends (...args: any) => any,
-> = {
+export type Handler<Event extends string, Listener extends (...args: any) => any> = {
 	on(event: Event, listener: Listener): any;
 	off(event: Event, listener: Listener): any;
 };
 
-export class EventObserver<
-	Event extends string,
-	Listener extends (...args: any) => any,
-> {
+export class EventObserver<Event extends string, Listener extends (...args: any) => any> {
 	constructor(
 		private readonly handler: Handler<string, any>,
 		private readonly event: Event,
@@ -30,10 +24,7 @@ export class EventObserver<
 export class EventManager<H extends Handler<string, any>> {
 	constructor(private readonly handler: H) {}
 
-	createObserver = <
-		Event extends string,
-		Listener extends (...args: any) => any,
-	>(
+	createObserver = <Event extends string, Listener extends (...args: any) => any>(
 		event: Event,
 		listener: Listener,
 	) => {

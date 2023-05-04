@@ -11,11 +11,7 @@ export abstract class AdapterPGetBaseFS<T> {
 	 */
 	public get = <K extends Path<T> | null | undefined = undefined>(
 		name?: K,
-	): K extends null | undefined
-		? T
-		: K extends Path<T>
-		? PathValue<T, K>
-		: never => {
+	): K extends null | undefined ? T : K extends Path<T> ? PathValue<T, K> : never => {
 		return this.config.get(name);
 	};
 
@@ -25,11 +21,7 @@ export abstract class AdapterPGetBaseFS<T> {
 	 */
 	public default = <K extends Path<T> | null | undefined = undefined>(
 		name?: K,
-	): K extends null | undefined
-		? T
-		: K extends Path<T>
-		? PathValue<T, K>
-		: never => {
+	): K extends null | undefined ? T : K extends Path<T> ? PathValue<T, K> : never => {
 		return this.config.default(name);
 	};
 

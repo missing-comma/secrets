@@ -65,10 +65,7 @@ export class ClipboardListener {
 	 * @param {ClipboardEvent} event - The event name
 	 * @param {Function} listener - Event callback
 	 */
-	on = <E extends ClipboardEvent>(
-		event: E,
-		listener: ClipboardEventCallback[E],
-	) => {
+	on = <E extends ClipboardEvent>(event: E, listener: ClipboardEventCallback[E]) => {
 		this.eventEmitter.on(event, listener);
 		return {
 			off: () => this.off(event, listener),
@@ -80,10 +77,7 @@ export class ClipboardListener {
 	 * @param {ClipboardEvent} event - The event name
 	 * @param {Function} listener - Event callback
 	 */
-	off = <E extends ClipboardEvent>(
-		event: E,
-		listener: ClipboardEventCallback[E],
-	) => {
+	off = <E extends ClipboardEvent>(event: E, listener: ClipboardEventCallback[E]) => {
 		return this.eventEmitter.off(event, listener);
 	};
 

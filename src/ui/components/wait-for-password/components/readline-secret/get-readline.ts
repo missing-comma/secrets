@@ -1,8 +1,4 @@
-import {
-	createInterface,
-	Interface as ReadlineInterface,
-	ReadLineOptions,
-} from 'readline';
+import {createInterface, Interface as ReadlineInterface, ReadLineOptions} from 'readline';
 
 export interface ExtendedReadlineOptions extends ReadLineOptions {
 	onWrite: (stringToWrite: string) => any;
@@ -26,9 +22,7 @@ function getBaseReadline(props: ReadLineOptions): ReadlineExtendedInterface {
 	);
 }
 
-export function getReadline(
-	props: ExtendedReadlineOptions,
-): ReadlineExtendedInterface {
+export function getReadline(props: ExtendedReadlineOptions): ReadlineExtendedInterface {
 	const readline = getBaseReadline(props);
 	readline._writeToOutput = props.onWrite;
 	return readline;

@@ -7,7 +7,7 @@ type Props = {
 	title: string | JSX.Element;
 };
 
-const PasswordContainer: React.FC<Props> = props => {
+const PasswordContainer: React.FC<Props> = (props) => {
 	const {stdin} = useStdin();
 	const {stdout} = useStdout();
 	const [renderCount, setRenderCount] = useState<number>(0);
@@ -18,7 +18,7 @@ const PasswordContainer: React.FC<Props> = props => {
 				stdin,
 				stdout,
 				query: '',
-				onSubmit: password => {
+				onSubmit: (password) => {
 					props.onSet(password);
 				},
 			});
@@ -31,7 +31,7 @@ const PasswordContainer: React.FC<Props> = props => {
 	return null;
 };
 
-export const PasswordResolver: React.FC<Props> = props => {
+export const PasswordResolver: React.FC<Props> = (props) => {
 	return (
 		<Text>
 			{props.title}

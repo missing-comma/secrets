@@ -14,7 +14,7 @@ export const Loader = () => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setStep(s => (s + 1) % (MAX_STEPS + 1));
+			setStep((s) => (s + 1) % (MAX_STEPS + 1));
 		}, 300);
 		return () => clearInterval(interval);
 	}, []);

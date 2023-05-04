@@ -8,7 +8,7 @@ export interface IWithSecretProps {
 
 type WithSecretRenderState = 'before-write' | 'write-secret' | 'after-write';
 
-export const WithSecret: React.FC<IWithSecretProps> = props => {
+export const WithSecret: React.FC<IWithSecretProps> = (props) => {
 	const {RenderBefore = () => null, children: Children} = props;
 	const [secret, setSecret] = useState<string>('');
 	const [renderState, setRenderState] = useState<WithSecretRenderState>(() => {
@@ -29,7 +29,7 @@ export const WithSecret: React.FC<IWithSecretProps> = props => {
 	if (renderState === 'write-secret') {
 		return (
 			<PasswordResolver
-				onSet={next => {
+				onSet={(next) => {
 					setSecret(next);
 					setRenderState('after-write');
 				}}

@@ -10,14 +10,14 @@ export interface IValidateHashProps {
 	onEvaluate(valid: boolean): void;
 }
 
-export const ValidateAuthHash: React.FC<IValidateHashProps> = props => {
+export const ValidateAuthHash: React.FC<IValidateHashProps> = (props) => {
 	const {validateHash, onEvaluate, password} = props;
 
 	const evaluate = async () => validateHash(password);
 
 	const mutation = useMutation(async () => {
 		const evaluatePromise = evaluate();
-		await Promise.all([evaluatePromise, new Promise(r => setTimeout(r, 1000))]);
+		await Promise.all([evaluatePromise, new Promise((r) => setTimeout(r, 1000))]);
 		onEvaluate(await evaluatePromise);
 	});
 

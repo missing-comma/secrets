@@ -1,9 +1,4 @@
-import yargs, {
-	Argv,
-	InferredOptionType,
-	Options,
-	PositionalOptions,
-} from 'yargs';
+import yargs, {Argv, InferredOptionType, Options, PositionalOptions} from 'yargs';
 import {CommandArgs} from '../args/index.js';
 import {ChangeArgv} from './types.js';
 
@@ -48,7 +43,7 @@ export abstract class BaseCommandAdapter<T = {}> {
 
 		const y = yargs(argv).strictCommands();
 		if (name) {
-			this.update(y => y.scriptName(name));
+			this.update((y) => y.scriptName(name));
 		}
 		const command = ['$0', this.input.command].filter(Boolean).join(' ');
 		return y.command(command, description);
@@ -56,7 +51,7 @@ export abstract class BaseCommandAdapter<T = {}> {
 
 	protected compose = (): Argv<T> => {
 		if (this.positionalValues.length !== 0) {
-			this.update(y => y.demandCommand(1));
+			this.update((y) => y.demandCommand(1));
 		}
 		const argv = this.getInitialYargs();
 		return this.mergeBuilder(argv);

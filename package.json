@@ -7,8 +7,8 @@
 		"build": "tsc",
 		"dev": "tsc --watch",
 		"lint": "echo 'haha lint, nice one'",
-		"format": "prettier ./src --write",
-		"testo": "prettier ./src --check . && xo && ava",
+		"format": "prettier ./src --config ./.prettierrc --write",
+		"testo": "prettier ./src --config ./.prettierrc --check . && xo && ava",
 		"test": "echo 'haha test, nice one'",
 		"prepublishOnly": "npm run test && npm run lint",
 		"preversion": "npm run lint",
@@ -69,7 +69,6 @@
 			"react/prop-types": "off"
 		}
 	},
-	"prettier": "@vdemedes/prettier-config",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/missing-comma/private-get.git"

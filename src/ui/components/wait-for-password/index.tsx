@@ -8,19 +8,14 @@ type InjectedProps = {
 	readonly password: string;
 };
 
-export const withWaitForPassword = <P extends InjectedProps>(
-	Component: React.FC<P>,
-) => {
+export const withWaitForPassword = <P extends InjectedProps>(Component: React.FC<P>) => {
 	const C = Component as React.FC<Omit<P, 'password'>>;
-	const Container: React.FC<Omit<P, 'password'>> = props => {
+	const Container: React.FC<Omit<P, 'password'>> = (props) => {
 		const [password, setPassword] = useState<string | null>(null);
 
 		if (password === null) {
 			return (
-				<PasswordResolver
-					onSet={setPassword}
-					title={'Write/Paste your password below:'}
-				/>
+				<PasswordResolver onSet={setPassword} title={'Write/Paste your password below:'} />
 			);
 		}
 		return (

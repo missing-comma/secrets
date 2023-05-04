@@ -1,7 +1,4 @@
-import {
-	EventManager,
-	EventObserver,
-} from '../../../../../data/event-manager/index.js';
+import {EventManager, EventObserver} from '../../../../../data/event-manager/index.js';
 import {ReadlineInterface, getReadline} from './get-readline.js';
 import clipboardy from 'clipboardy';
 
@@ -39,19 +36,16 @@ export class ReadlineSecret {
 			},
 		});
 
-		this.rl.question(query, password => {
+		this.rl.question(query, (password) => {
 			this.onEnd(password);
 		});
 
 		this.stdinEventManager = new EventManager(stdin);
-		const keypressObserver = this.stdinEventManager.on(
-			'keypress',
-			(_, key: KeyPress) => {
-				if (key.name === 'v' && (key.ctrl || key.meta)) {
-					this.onEnd(clipboardy.read());
-				}
-			},
-		);
+		const keypressObserver = this.stdinEventManager.on('keypress', (_, key: KeyPress) => {
+			if (key.name === 'v' && (key.ctrl || key.meta)) {
+				this.onEnd(clipboardy.read());
+			}
+		});
 		this.observers.push(keypressObserver);
 	}
 
@@ -62,7 +56,7 @@ export class ReadlineSecret {
 	// };
 
 	private onEnd = async (password: string | Promise<string>) => {
-		this.observers.forEach(observer => observer.off());
+		this.observers.forEach((observer) => observer.off());
 		this.observers = [];
 		this.rl.close();
 		this.props.onSubmit(await password);

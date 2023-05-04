@@ -19,14 +19,14 @@ export class Command<T = {}> extends BaseCommandAdapter<T> {
 		opt: O,
 	): Command<T & {[key in K]: InferredOptionType<O>}> => {
 		this.positionalValues.push({...opt, key});
-		return this.update(y => y.positional(key, opt));
+		return this.update((y) => y.positional(key, opt));
 	};
 
 	options = <O extends {[key: string]: Options}>(
 		options: O,
 	): Command<Omit<T, keyof O> & InferredOptionTypes<O>> => {
 		this.optionValues.push(Object.values(options));
-		return this.update(y => y.options(options));
+		return this.update((y) => y.options(options));
 	};
 
 	parse = (): {

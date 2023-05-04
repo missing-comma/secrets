@@ -9,20 +9,13 @@ export interface IWaitForAuthenticationProps {
 	children: React.FC<{password: string}>;
 }
 
-export const WaitForAuthentication: React.FC<
-	IWaitForAuthenticationProps
-> = props => {
+export const WaitForAuthentication: React.FC<IWaitForAuthenticationProps> = (props) => {
 	const {children: Children} = props;
 	const [password, setPassword] = useState<string | null>(null);
 	const [valid, setValid] = useState<boolean | null>(null);
 
 	if (password === null) {
-		return (
-			<PasswordResolver
-				onSet={setPassword}
-				title={'Write/Paste your password:'}
-			/>
-		);
+		return <PasswordResolver onSet={setPassword} title={'Write/Paste your password:'} />;
 	}
 
 	if (password !== null && valid === false) {

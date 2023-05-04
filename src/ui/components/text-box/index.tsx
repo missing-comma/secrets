@@ -7,7 +7,7 @@ export interface ITextBoxProps extends BoxProps {
 	center?: boolean;
 }
 
-export const TextBox: React.FC<ITextBoxProps> = props => {
+export const TextBox: React.FC<ITextBoxProps> = (props) => {
 	const {color = 'white', children, center = true, ...boxProps} = props;
 	return (
 		<Box

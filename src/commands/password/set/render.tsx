@@ -10,10 +10,7 @@ import chalk from 'chalk';
 const Content = withWaitForPassword(({password}) => {
 	const {savePassword} = Deps;
 	const mutation = useMutation(async () => {
-		await Promise.all([
-			savePassword.handle(password),
-			new Promise(r => setTimeout(r, 1000)),
-		]);
+		await Promise.all([savePassword.handle(password), new Promise((r) => setTimeout(r, 1000))]);
 	});
 
 	useEffect(() => {

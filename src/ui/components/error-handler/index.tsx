@@ -62,7 +62,7 @@ export class ErrorHandler extends Component<Props, ErrorData | {}> {
 }
 
 export const withErrorHandler = <P extends {}>(Component: React.FC<P>) => {
-	const Container: React.FC<P> = props => {
+	const Container: React.FC<P> = (props) => {
 		return (
 			<ErrorHandler>
 				<Component {...props} />

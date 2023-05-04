@@ -7,10 +7,7 @@ type Payload = {
 };
 
 export class SecretCreatePair {
-	constructor(
-		private readonly secrets: SecretFS,
-		private readonly save: SecretSavePair,
-	) {}
+	constructor(private readonly secrets: SecretFS, private readonly save: SecretSavePair) {}
 
 	public handle = (key: string, password: string, payload: Payload) => {
 		if (this.secrets.has(key)) {

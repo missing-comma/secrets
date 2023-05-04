@@ -19,9 +19,7 @@ class DependencyLoader<T> {
 	};
 }
 
-export function makeDependencyLoader<T>(
-	factory: () => T,
-): T & {load: () => void} {
+export function makeDependencyLoader<T>(factory: () => T): T & {load: () => void} {
 	const loader = new DependencyLoader(factory);
 
 	return new Proxy(loader as any, {

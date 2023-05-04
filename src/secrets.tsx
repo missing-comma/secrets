@@ -1,10 +1,10 @@
 #!/usr/bin/env node
+import { Config } from './data/config/index.js';
 import React from 'react';
-import {render} from 'ink';
+import { render } from 'ink';
 import App from './app.js';
-import {Command} from './data/command/index.js';
+import { Command } from './data/command/index.js';
 import COMMANDS from './commands/index.js';
-import {CommandArgs} from './data/args/index.js';
 
 const cmd = new Command({
 	command: '<command>',
@@ -23,9 +23,9 @@ const cmd = new Command({
 			default: false,
 		},
 	});
-const {command, verbose} = cmd.parse();
+const { command, verbose } = cmd.parse();
 
-CommandArgs.load({verbose});
+Config.verbose.meta.set(verbose);
 COMMANDS.ALL[command].load();
 
-render(<App command={command} />);
+() => render(<App command={command} />);

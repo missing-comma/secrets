@@ -1,8 +1,9 @@
 import convict from 'convict';
-import {homedir} from 'os';
 import {join} from 'path';
 import {existsSync, mkdirSync} from 'fs';
 import {AdapterPGetBaseFS} from './adapter.js';
+import {MISSING_COMMA_DIR} from '../../../domain/constants.js';
+import {Config} from '../../config/index.js';
 
 export abstract class PGetBaseFS<T> extends AdapterPGetBaseFS<T> {
 	public readonly path: string;
@@ -11,8 +12,8 @@ export abstract class PGetBaseFS<T> extends AdapterPGetBaseFS<T> {
 
 	constructor(protected readonly name: string, config: convict.Config<T>) {
 		super(config);
-		this.missingCommaDir = join(homedir(), '.missing-comma');
-		this.dir = join(this.missingCommaDir, 'secrets');
+		this.missingCommaDir = MISSING_COMMA_DIR;
+		this.dir = join(MISSING_COMMA_DIR, Config.resourcesDir.get());
 		this.path = join(this.dir, name + '.json');
 
 		this.load();

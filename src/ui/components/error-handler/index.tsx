@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Newline, Text} from 'ink';
-import {CommandArgs} from '../../../data/args/index.js';
 import {ErrorBox} from '../error-box/index.js';
+import {Config} from '../../../data/config/index.js';
 
 type Props = {
 	children: React.ReactNode;
@@ -33,7 +33,7 @@ export class ErrorHandler extends Component<Props, ErrorData | {}> {
 		super(props);
 		this.state = {};
 
-		this.verbose = CommandArgs.get('verbose');
+		this.verbose = Config.verbose.get();
 	}
 
 	/**

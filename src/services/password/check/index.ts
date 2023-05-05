@@ -7,6 +7,11 @@ export class PasswordCheck {
 	public handle = async (input: string): Promise<boolean> => {
 		const hasher = new Hasher(this.config.get('hashingAlgorithm'));
 		const passwordHash = this.config.get('passwordHash');
-		return await hasher.compare(input, passwordHash);
+		if (passwordHash === '') return false;
+		return await hasher.compare(input, passwordHash).catch((err) => {
+			console.error('Failed to check password hash');
+			console.error(err);
+			return false;
+		});
 	};
 }

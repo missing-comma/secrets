@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import { useCallback, useState } from 'react';
 
 export interface IMutationState<R> {
 	isLoading: boolean;
@@ -13,7 +13,7 @@ export const useMutation = <A extends any[], R>(callback: (...args: A) => Promis
 		error: null,
 	});
 
-	const setLoading = (loading: boolean) => setState((s) => ({...s, isLoading: loading}));
+	const setLoading = (loading: boolean) => setState((s) => ({ ...s, isLoading: loading }));
 
 	const mutate = useCallback(async (...args: A) => {
 		setLoading(true);

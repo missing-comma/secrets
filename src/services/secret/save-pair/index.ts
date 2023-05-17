@@ -1,6 +1,6 @@
-import {SecretFS} from '../../../data/file-system/index.js';
-import {ISecret} from '../../../domain/secrets.js';
-import {encrypt} from './encrypt.js';
+import { SecretFS } from '../../../data/file-system/index.js';
+import { ISecret } from '../../../domain/secrets.js';
+import { encrypt } from './encrypt.js';
 
 type Payload = {
 	value: string;

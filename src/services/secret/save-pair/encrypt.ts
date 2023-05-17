@@ -1,11 +1,11 @@
-import {randomBytes, scryptSync, createCipheriv} from 'crypto';
+import { randomBytes, scryptSync, createCipheriv } from 'crypto';
 
 type Payload = {
 	readonly input: string;
 	readonly password: string;
 };
 
-export function encrypt({input, password}: Payload) {
+export function encrypt({ input, password }: Payload) {
 	// Generate a random initialization vector
 	const iv = randomBytes(16);
 

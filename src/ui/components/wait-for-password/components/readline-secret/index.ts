@@ -1,5 +1,5 @@
-import {EventManager, EventObserver} from '../../../../../data/event-manager/index.js';
-import {ReadlineInterface, getReadline} from './get-readline.js';
+import { EventManager, EventObserver } from '../../../../../data/event-manager/index.js';
+import { ReadlineInterface, getReadline } from './get-readline.js';
 import clipboardy from 'clipboardy';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 	onSubmit(password: string): void;
 };
 
-type KeyPress = {name: string; ctrl: boolean; meta: boolean};
+type KeyPress = { name: string; ctrl: boolean; meta: boolean };
 
 export class ReadlineSecret {
 	private readonly stdinEventManager: EventManager<NodeJS.ReadStream>;
@@ -19,7 +19,7 @@ export class ReadlineSecret {
 
 	constructor(props: Props) {
 		this.props = props;
-		const {stdin, stdout, query} = props;
+		const { stdin, stdout, query } = props;
 		this.rl = getReadline({
 			input: stdin,
 			output: stdout,

@@ -1,5 +1,5 @@
-import {SecretFS} from '../../../data/file-system/index.js';
-import {SecretSavePair} from '../save-pair/index.js';
+import { SecretFS } from '../../../data/file-system/index.js';
+import { SecretSavePair } from '../save-pair/index.js';
 
 type Payload = {
 	value: string;

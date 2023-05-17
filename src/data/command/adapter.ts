@@ -1,6 +1,6 @@
-import yargs, {Argv, InferredOptionType, Options, PositionalOptions} from 'yargs';
-import {CommandArgs} from '../args/index.js';
-import {ChangeArgv} from './types.js';
+import yargs, { Argv, InferredOptionType, Options, PositionalOptions } from 'yargs';
+import { CommandArgs } from '../args/index.js';
+import { ChangeArgv } from './types.js';
 
 type CommandInput = {
 	name?: string;
@@ -27,7 +27,7 @@ export abstract class BaseCommandAdapter<T = {}> {
 	}
 
 	private getArgv = () => {
-		const {depth} = this.input;
+		const { depth } = this.input;
 		const argv = Array.from(CommandArgs.getArgv());
 		const argvFinal: Array<string> = [];
 
@@ -38,7 +38,7 @@ export abstract class BaseCommandAdapter<T = {}> {
 	};
 
 	private getInitialYargs = (): Argv<{}> => {
-		const {description, name} = this.input;
+		const { description, name } = this.input;
 		const argv = this.getArgv();
 
 		const y = yargs(argv).strictCommands();

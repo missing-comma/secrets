@@ -1,5 +1,5 @@
 import React from 'react';
-import {Command} from '../../../data/command/index.js';
+import { Command } from '../../../data/command/index.js';
 import factory from './dependencies.js';
 import Render from './render.js';
 

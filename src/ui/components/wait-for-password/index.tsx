@@ -1,8 +1,8 @@
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 
-import {PasswordResolver} from './components/password-resolver.js';
-import {Text} from 'ink';
+import { PasswordResolver } from './components/password-resolver.js';
+import { Text } from 'ink';
 
 type InjectedProps = {
 	readonly password: string;

@@ -1,5 +1,5 @@
-import convict, {Path, PathValue} from 'convict';
-import {writeFileSync} from 'fs';
+import convict, { Path, PathValue } from 'convict';
+import { writeFileSync } from 'fs';
 
 export abstract class AdapterPGetBaseFS<T> {
 	protected abstract readonly path: string;

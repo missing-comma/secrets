@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Newline, Text} from 'ink';
-import {ErrorBox} from '../error-box/index.js';
-import {Config} from '../../../data/config/index.js';
+import React, { Component } from 'react';
+import { Newline, Text } from 'ink';
+import { ErrorBox } from '../error-box/index.js';
+import { Config } from '../../../data/config/index.js';
 
 type Props = {
 	children: React.ReactNode;
@@ -41,7 +41,7 @@ export class ErrorHandler extends Component<Props, ErrorData | {}> {
 	 * the entire component tree to unmount.
 	 */
 	override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-		this.setState({error: parseError(error), errorInfo});
+		this.setState({ error: parseError(error), errorInfo });
 	}
 
 	override render() {

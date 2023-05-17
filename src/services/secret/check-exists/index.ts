@@ -1,4 +1,4 @@
-import {SecretFS} from '../../../data/file-system/index.js';
+import { SecretFS } from '../../../data/file-system/index.js';
 
 export class SecretCheckExists {
 	constructor(private readonly secrets: SecretFS) {}

@@ -1,9 +1,9 @@
 import convict from 'convict';
-import {join} from 'path';
-import {existsSync, mkdirSync} from 'fs';
-import {AdapterPGetBaseFS} from './adapter.js';
-import {MISSING_COMMA_DIR} from '../../../domain/constants.js';
-import {Config} from '../../config/index.js';
+import { join } from 'path';
+import { existsSync, mkdirSync } from 'fs';
+import { AdapterPGetBaseFS } from './adapter.js';
+import { MISSING_COMMA_DIR } from '../../../domain/constants.js';
+import { Config } from '../../config/index.js';
 
 export abstract class PGetBaseFS<T> extends AdapterPGetBaseFS<T> {
 	public readonly path: string;

@@ -73,7 +73,7 @@ export class PropertyConfig<K extends string, V = any> {
 		if (this.meta.validates.length) {
 			if (this.firstGet) {
 				this.firstGet = false;
-				const {key, defaultValue} = this.meta;
+				const { key, defaultValue } = this.meta;
 				const actualDefaultValue = defaultValue === NOT_SET ? undefined : defaultValue;
 				const msgms = this.meta.validates.map((validate) =>
 					validate(value, actualDefaultValue as any, key),

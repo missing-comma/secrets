@@ -1,4 +1,4 @@
-import {PropertyConfig} from './config-property.js';
+import { PropertyConfig } from './config-property.js';
 
 export class PropertyFactoryConfig<K extends string = string, V = any> {
 	private _key!: any;
@@ -61,7 +61,7 @@ export const configPropertyFactory = <Value>(): PropertyFactoryConfig<string, Va
 
 export const configFactory = <F extends Record<string, PropertyFactoryConfig>>(factories: F) => {
 	type Value<CPF> = CPF extends PropertyFactoryConfig<any, infer V> ? V : never;
-	type Config = {[K in keyof F]: PropertyConfig<Extract<K, string>, Value<F[K]>>};
+	type Config = { [K in keyof F]: PropertyConfig<Extract<K, string>, Value<F[K]>> };
 
 	const out: Record<string, PropertyConfig<any, any>> = {};
 	Object.entries(factories).forEach(([key, propertyFactory]) => {

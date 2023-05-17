@@ -1,5 +1,5 @@
-import {Text} from 'ink';
-import React, {useState, useEffect} from 'react';
+import { Text } from 'ink';
+import React, { useState, useEffect } from 'react';
 
 const MAX_STEPS = 3;
 // const LOAD_KEYS = ['><', '<>', '><', '<>'];

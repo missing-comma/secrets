@@ -1,5 +1,5 @@
-import {SecretFS} from '../../../data/file-system/index.js';
-import {SecretSavePair} from '../save-pair/index.js';
+import { SecretFS } from '../../../data/file-system/index.js';
+import { SecretSavePair } from '../save-pair/index.js';
 
 export class SecretUpdatePair {
 	constructor(private readonly secrets: SecretFS, private readonly save: SecretSavePair) {}

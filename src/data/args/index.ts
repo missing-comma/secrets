@@ -1,4 +1,4 @@
-import {hideBin} from 'yargs/helpers';
+import { hideBin } from 'yargs/helpers';
 
 export class LoadCommandArgs {
 	getArgv = () => {

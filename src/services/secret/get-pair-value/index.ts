@@ -1,5 +1,5 @@
-import {SecretFS} from '../../../data/file-system/index.js';
-import {decrypt} from './decrypt.js';
+import { SecretFS } from '../../../data/file-system/index.js';
+import { decrypt } from './decrypt.js';
 
 export class SecretGetValue {
 	constructor(private readonly secrets: SecretFS) {}

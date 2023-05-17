@@ -1,4 +1,4 @@
-import {scryptSync, createDecipheriv} from 'crypto';
+import { scryptSync, createDecipheriv } from 'crypto';
 
 export function decrypt(input: string, password: string): string {
 	const iv = Buffer.from(input.slice(0, 32), 'hex'); // Get the first 24 bytes of the encrypted data

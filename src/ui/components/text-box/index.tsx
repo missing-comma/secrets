@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Box, BoxProps} from 'ink';
+import { Text, Box, BoxProps } from 'ink';
 
 export interface ITextBoxProps extends BoxProps {
 	children: React.ReactNode;
@@ -8,7 +8,7 @@ export interface ITextBoxProps extends BoxProps {
 }
 
 export const TextBox: React.FC<ITextBoxProps> = (props) => {
-	const {color = 'white', children, center = true, ...boxProps} = props;
+	const { color = 'white', children, center = true, ...boxProps } = props;
 	return (
 		<Box
 			alignItems={center ? 'center' : undefined}

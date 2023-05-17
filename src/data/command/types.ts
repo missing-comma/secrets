@@ -1,4 +1,4 @@
-import {Argv, InferredOptionType, Options, PositionalOptions} from 'yargs';
+import { Argv, InferredOptionType, Options, PositionalOptions } from 'yargs';
 
 /** Convert literal string types like 'foo-bar' to 'FooBar' */
 export type PascalCase<S extends string> = string extends S
@@ -20,7 +20,7 @@ export type Alias<O extends Options | PositionalOptions> = O extends {
 	alias: infer T;
 }
 	? T extends Exclude<string, T>
-		? {[key in T]: InferredOptionType<O>}
+		? { [key in T]: InferredOptionType<O> }
 		: {}
 	: {};
 

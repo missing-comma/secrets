@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Deps from './dependencies.js';
-import {WithSecret} from '../../../ui/components/with-secret/index.js';
-import {TextBox} from '../../../ui/components/text-box/index.js';
-import {WaitForAuthentication} from '../../../ui/components/with-authentication/index.js';
+import { WaitForSecretInput } from '../../../ui/components/wait-for-secret-input/index.js';
+import { TextBox } from '../../../ui/components/text-box/index.js';
+import { WaitForAuthentication } from '../../../ui/components/with-authentication/index.js';
 
 type Props = {
 	name: string;
 	description: string | null;
 };
 
-export default function PrivateCreateCommand({name: key, description}: Props) {
-	const {checkExists, checkHash, create} = Deps;
+export default function PrivateCreateCommand({ name: key, description }: Props) {
+	const { checkExists, checkHash, create } = Deps;
 
 	useEffect(() => {
 		const keyAlreadyExists = checkExists.handle(key);
@@ -21,20 +21,17 @@ export default function PrivateCreateCommand({name: key, description}: Props) {
 
 	return (
 		<WaitForAuthentication validateHash={checkHash.handle}>
-			{({password}) => {
+			{({ password }) => {
 				return (
-					<WithSecret>
-						{({secret}) => {
-							useEffect(() => {
-								create.handle(key, password, {description, value: secret});
-							}, []);
-							return (
-								<>
-									<TextBox color="green">{'Secret saved successfully'}</TextBox>
-								</>
-							);
+					<WaitForSecretInput
+						label={'secret'}
+						onSecretSet={(secret) => {
+							create.handle(key, password, { description, value: secret });
 						}}
-					</WithSecret>
+						secret={key}
+					>
+						<TextBox color="green">{'Secret saved successfully'}</TextBox>
+					</WaitForSecretInput>
 				);
 			}}
 		</WaitForAuthentication>

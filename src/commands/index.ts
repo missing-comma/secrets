@@ -1,12 +1,13 @@
-import RenderGet from './secrets/get/index.js';
-import RenderCreate from './secrets/create/index.js';
-
-import PasswordSet from './password/set/index.js';
+import SecretCommands from './secrets/index.js';
+import PasswordCommands from './password/index.js';
+import ConfigCommands from './config/index.js';
+import BaseCommands from './base/index.js';
 
 const ALL = {
-	get: RenderGet,
-	create: RenderCreate,
-	'password-set': PasswordSet,
+	...SecretCommands,
+	...PasswordCommands,
+	...ConfigCommands,
+	...BaseCommands,
 };
 
 const KEYS = Object.keys(ALL) as ReadonlyArray<keyof typeof ALL>;

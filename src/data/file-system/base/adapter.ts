@@ -35,7 +35,7 @@ export abstract class AdapterPGetBaseFS<T> {
 	 * nested values, e.g. "database.port". If objects in the chain don't yet
 	 * exist, they will be initialized to empty objects
 	 */
-	public set = <K extends Path<T> | string>(
+	public set = <K extends Path<T>>(
 		name: K,
 		value: K extends Path<T> ? PathValue<T, K> : any,
 	): convict.Config<T> => {

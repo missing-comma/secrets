@@ -4,7 +4,7 @@ import { Selector } from './components/selector/index.js';
 import { SelectorLabel } from './components/label.js';
 import { Persisted } from '../../persisted/index.js';
 
-export const Select = withPropsParser((props) => {
+export const FormSelect = withPropsParser((props) => {
 	useEffect(() => {
 		if (props.state === 'done') {
 			props.commitChanges();

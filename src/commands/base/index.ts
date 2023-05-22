@@ -1,5 +1,5 @@
-// import RenderInit from './init/index.js';
+import RenderInit from './init/index.js';
 
 export default {
-	// init: RenderInit,
+	init: RenderInit,
 };

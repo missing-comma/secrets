@@ -10,6 +10,7 @@ export const useFlowContext = (id: string) => {
 		return {
 			flowId: id,
 			flow,
+			ended: flow !== undefined && flow?.step === flow?.size,
 			advance: () => ctx.advance(id),
 			updateFlowProp: <P extends keyof IFlowRenderSingleState>(
 				prop: P,

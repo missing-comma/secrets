@@ -105,3 +105,4 @@ dist
 .git.old
 
 **/__tests__
+*.secret.*

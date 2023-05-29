@@ -9,6 +9,7 @@ const command = new Command({
 	depth: 1,
 });
 export default {
+	command,
 	load: () => factory.load(),
 	Render: () => {
 		command.parse();

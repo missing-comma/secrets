@@ -24,6 +24,7 @@ const command = new Command({
 	});
 
 export default {
+	command,
 	load: () => factory.load(),
 	Render: () => {
 		const cli = command.parse();

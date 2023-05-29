@@ -1,6 +1,7 @@
 import yargs, { Argv, InferredOptionType, Options, PositionalOptions } from 'yargs';
 import { CommandArgs } from '../args/index.js';
 import { ChangeArgv } from './types.js';
+import { isCommandSafeToRun } from './safety-check.js';
 
 type CommandInput = {
 	name?: string;
@@ -8,6 +9,7 @@ type CommandInput = {
 	description: string;
 	depth: number;
 	useCommand: boolean;
+	safetyCheck: boolean;
 };
 
 export abstract class BaseCommandAdapter<T = {}> {
@@ -16,14 +18,18 @@ export abstract class BaseCommandAdapter<T = {}> {
 	protected positionalValues: Array<InferredOptionType<PositionalOptions>> = [];
 	protected readonly input: CommandInput;
 	protected abstract update<A>(change: ChangeArgv<T, A>): any;
+	public readonly isSafeToRun: boolean;
 
 	constructor(input: Partial<CommandInput>) {
 		this.input = {
 			depth: 0,
 			description: '',
 			useCommand: false,
+			safetyCheck: true,
 			...input,
 		};
+
+		this.isSafeToRun = isCommandSafeToRun(this.input.safetyCheck);
 	}
 
 	private getArgv = () => {

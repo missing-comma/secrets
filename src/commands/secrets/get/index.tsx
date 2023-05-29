@@ -15,10 +15,12 @@ const command = new Command({
 });
 
 export default {
+	command,
 	load: () => factory.load(),
 	Render: () => {
 		const cli = command.parse();
 		const { key, ...props } = cli;
+		return null;
 		return <PrivateGetCommand {...props} name={cli.key} />;
 	},
 };

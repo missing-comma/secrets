@@ -1,14 +1,16 @@
 import React from 'react';
-import COMMANDS from './commands/index.js';
+import COMMANDS, { CommandKey } from './commands/index.js';
 import { withErrorHandler } from './ui/components/error-handler/index.js';
+import { withSafetyCheck } from './ui/containers/with-safety-check/index.js';
 
 type Props = {
-	command: keyof typeof COMMANDS.ALL;
+	command: CommandKey;
 };
 
-export default withErrorHandler(function App({ command }: Props) {
-	const { Render } = COMMANDS.ALL[command];
+const App: React.FC<Props> = ({ command }) => {
+	const { Render } = COMMANDS.get(command);
 	if (Render) return <Render />;
-
 	return null;
-});
+};
+
+export default withErrorHandler(withSafetyCheck(App));

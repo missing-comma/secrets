@@ -12,7 +12,14 @@ const ALL = {
 
 const KEYS = Object.keys(ALL) as ReadonlyArray<keyof typeof ALL>;
 
-export default {
+export type CommandKey = keyof typeof ALL;
+
+const out = {
 	ALL,
 	KEYS,
+	get: <K extends keyof typeof ALL>(command: K) => {
+		return ALL[command];
+	},
 };
+
+export default out;

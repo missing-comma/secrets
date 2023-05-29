@@ -10,9 +10,10 @@ import { useSelectionState } from './use-selection-state.js';
 import { useInnerSelected } from './use-inner-selected.js';
 
 export const useParseSelectionProps = <V>(props: IProps<V>): IParsedProps<V> => {
+	const inline = props.inline ?? false;
 	const extract = useSelectExtraction(props);
 	const options = useParseOptions(props, extract);
-	const columnCount = useColumnCount(options);
+	const columnCount = useColumnCount(options, inline, props.cols);
 	const matrix = useSelectionMatrix(options, columnCount);
 	const { onDone, state } = useSelectionState();
 	const innerSelected = useInnerSelected(props, options, extract);
@@ -27,5 +28,6 @@ export const useParseSelectionProps = <V>(props: IProps<V>): IParsedProps<V> => 
 		},
 		label: props.label,
 		onDone,
+		inline,
 	};
 };

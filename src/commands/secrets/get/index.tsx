@@ -20,7 +20,6 @@ export default {
 	Render: () => {
 		const cli = command.parse();
 		const { key, ...props } = cli;
-		return null;
 		return <PrivateGetCommand {...props} name={cli.key} />;
 	},
 };

@@ -18,11 +18,6 @@ export const SafetyCheck: React.FC<ISafetyCheckProps> = (props) => {
 
 	return (
 		<Flow.Container>
-			<SafetyCheckResult
-				command={props.command}
-				userGaveConsent={userGaveConsent}
-				finish={props.finish}
-			/>
 			<SafetyBooleanSelector
 				label={`You're running on ${chalk.red('PRODUCTION')}. Is that correct?`}
 				onChange={(next) => {
@@ -30,6 +25,11 @@ export const SafetyCheck: React.FC<ISafetyCheckProps> = (props) => {
 					advance();
 				}}
 				selected={userGaveConsent}
+			/>
+			<SafetyCheckResult
+				command={props.command}
+				userGaveConsent={userGaveConsent}
+				finish={props.finish}
 			/>
 		</Flow.Container>
 	);

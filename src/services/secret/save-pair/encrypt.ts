@@ -1,11 +1,13 @@
 import { randomBytes, scryptSync, createCipheriv } from 'crypto';
+import { PasswordLessEncryptionHandler } from '../password-less-encryption-handler/index.js';
 
 type Payload = {
 	readonly input: string;
-	readonly password: string;
+	readonly password: string | null;
+	readonly passwordLessHandler: PasswordLessEncryptionHandler;
 };
 
-export function encrypt({ input, password }: Payload) {
+function baseEncrypt(input: string, password: string) {
 	// Generate a random initialization vector
 	const iv = randomBytes(16);
 
@@ -20,4 +22,12 @@ export function encrypt({ input, password }: Payload) {
 
 	// Concatenate the IV and encrypted data with a delimiter
 	return iv.toString('hex') + '' + encrypted;
+}
+
+export function encrypt({ input, password, passwordLessHandler }: Payload) {
+	const output = baseEncrypt(input, passwordLessHandler.defaultPassword(password));
+	if (password !== null && passwordLessHandler.isPasswordless(output)) {
+		throw new Error(`Unable generate valid password, try again later`);
+	}
+	return passwordLessHandler.injectIdentifier(output, password);
 }

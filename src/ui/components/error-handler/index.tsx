@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Newline, Text } from 'ink';
 import { ErrorBox } from '../error-box/index.js';
 import { Config } from '../../../data/config/index.js';
+import { DetailedError } from '../../../domain/errors.js';
 
 type Props = {
 	children: React.ReactNode;
@@ -33,7 +34,7 @@ export class ErrorHandler extends Component<Props, ErrorData | {}> {
 		super(props);
 		this.state = {};
 
-		this.verbose = Config.verbose.get();
+		this.verbose = Config.verbose.get() || process.argv.some((argv) => argv === '--debug');
 	}
 
 	/**
@@ -52,6 +53,9 @@ export class ErrorHandler extends Component<Props, ErrorData | {}> {
 						{'Error: '}
 						{this.state.error.message}
 					</ErrorBox>
+					{this.state.error instanceof DetailedError && this.state.error.description && (
+						<Text color="red">{this.state.error.description}</Text>
+					)}
 					{this.verbose && <Newline />}
 					{this.verbose && <Text>{this.state.errorInfo.componentStack}</Text>}
 				</>

@@ -3,6 +3,7 @@ import { ConfigFS, SecretFS } from '../../../data/file-system/index.js';
 import { PasswordCheck } from '../../../services/password/check/index.js';
 import { SecretCheckExists } from '../../../services/secret/check-exists/index.js';
 import { SecretCreatePair } from '../../../services/secret/create-pair/index.js';
+import { SecretGetKeys } from '../../../services/secret/get-keys/index.js';
 import { SecretSavePair } from '../../../services/secret/save-pair/index.js';
 
 export default makeDependencyLoader(() => {
@@ -13,5 +14,6 @@ export default makeDependencyLoader(() => {
 		checkHash: new PasswordCheck(config),
 		create: new SecretCreatePair(secrets, save),
 		checkExists: new SecretCheckExists(secrets),
+		getKeys: new SecretGetKeys(secrets),
 	};
 });

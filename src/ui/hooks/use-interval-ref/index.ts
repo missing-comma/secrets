@@ -1,25 +1,31 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useCallbackRef } from '../use-callback-ref/index.js';
 import { useMemoRef } from '../use-memo-ref/index.js';
 
-export interface IUseIntervalRefHandleActions {
+export interface IUseIntervalRefHandleActions<Initial> {
+	initial: Initial;
 	stop(): void;
 }
 
-export interface IUseIntervalRefOptions {
+export interface IUseIntervalRefOptions<Initial> {
 	readonly interval: number;
-	readonly handle: (actions: IUseIntervalRefHandleActions) => void;
+	readonly handle: (actions: IUseIntervalRefHandleActions<Initial>) => void;
+	readonly initial: () => Initial;
+	readonly lazy?: boolean;
 }
 
-export interface IUseIntervalRef extends IUseIntervalRefHandleActions {
+export interface IUseIntervalRef<Initial> extends IUseIntervalRefHandleActions<Initial> {
 	start(): void;
 	trigger(): void;
 }
 
-export const useIntervalRef = (options: IUseIntervalRefOptions): IUseIntervalRef => {
+export const useIntervalRef = <Initial>(
+	options: IUseIntervalRefOptions<Initial>,
+): IUseIntervalRef<Initial> => {
 	const interval = useRef<NodeJS.Timer | null>();
 	const intervalTime = useMemoRef(() => options.interval);
 	const callback = useCallbackRef(options.handle);
+	const initial = useMemo(() => options.initial(), []);
 
 	const stop = useCallback(() => {
 		if (interval.current !== null) {
@@ -29,8 +35,9 @@ export const useIntervalRef = (options: IUseIntervalRefOptions): IUseIntervalRef
 	}, []);
 
 	const trigger = useCallback(() => {
-		const actions: IUseIntervalRefHandleActions = {
+		const actions: IUseIntervalRefHandleActions<Initial> = {
 			stop,
+			initial,
 		};
 		callback.current(actions);
 	}, []);
@@ -41,13 +48,16 @@ export const useIntervalRef = (options: IUseIntervalRefOptions): IUseIntervalRef
 	}, []);
 
 	useEffect(() => {
-		start();
+		if (!options.lazy) {
+			start();
+		}
 		return () => {
 			stop();
 		};
 	}, []);
 
 	return {
+		initial,
 		start,
 		stop,
 		trigger,

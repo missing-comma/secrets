@@ -44,6 +44,10 @@ export abstract class AdapterPGetBaseFS<T> {
 		return next;
 	};
 
+	public keys = () => {
+		return Object.keys(this.config.getProperties() as any);
+	};
+
 	protected updateFile = () => {
 		const config = this.config.getProperties();
 		writeFileSync(this.path, JSON.stringify(config, null, 2));

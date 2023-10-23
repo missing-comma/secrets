@@ -11,10 +11,20 @@ const command = new Command({
 })
 	.options({
 		description: {
+			alias: ['d'],
 			type: 'string',
 			demandOption: false,
 			default: null,
 			description: 'Description of the secret',
+		},
+	})
+	.options({
+		noPassword: {
+			alias: ['np'],
+			type: 'boolean',
+			demandOption: false,
+			default: false,
+			description: 'Store secret without password',
 		},
 	})
 	.positional('key', {

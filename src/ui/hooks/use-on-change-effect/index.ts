@@ -24,6 +24,7 @@ export const useOnChangeEffect = <V>(options: IUseOnChangeEffectOptions<V>) => {
 
 	const interval = useIntervalRef({
 		interval: options.refreshRate,
+		initial: () => null,
 		handle: () => {
 			const next = options.getValue();
 			setValue((prev) => {

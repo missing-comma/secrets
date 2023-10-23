@@ -10,11 +10,12 @@ type Payload = {
 export class SecretSavePair {
 	constructor(private readonly secrets: SecretFS) {}
 
-	public handle = (key: string, password: string, payload: Payload) => {
+	public handle = (key: string, password: string | null, payload: Payload) => {
 		const secret: ISecret = {
 			value: encrypt({
 				input: payload.value,
 				password,
+				passwordLessHandler: this.secrets.passwordlessHandler,
 			}),
 			description: payload.description,
 		};

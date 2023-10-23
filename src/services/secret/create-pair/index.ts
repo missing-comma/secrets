@@ -9,7 +9,7 @@ type Payload = {
 export class SecretCreatePair {
 	constructor(private readonly secrets: SecretFS, private readonly save: SecretSavePair) {}
 
-	public handle = (key: string, password: string, payload: Payload) => {
+	public handle = (key: string, password: string | null, payload: Payload) => {
 		if (this.secrets.has(key)) {
 			throw new Error(`Secret [ ${key} ] already exists`);
 		}

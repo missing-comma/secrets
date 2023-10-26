@@ -3,9 +3,9 @@ import { ConfigFS } from '../../../data/file-system/index.js';
 import { PasswordSave } from '../../../services/password/save/index.js';
 
 export default makeDependencyLoader(() => {
-	const configFS = new ConfigFS();
+	const configs = new ConfigFS();
 	return {
-		configFS,
-		savePassword: new PasswordSave(configFS),
+		configs,
+		savePassword: new PasswordSave(configs),
 	};
 });

@@ -9,11 +9,11 @@ import { TextBox } from '../../../../ui/components/text-box/index.js';
 const Flow = makeFocusedFlow('init-flow');
 
 const InitializeConfig = () => {
-	const { configFS } = Deps;
+	const { configs } = Deps;
 
 	const initialValues = useMemo((): IFormValues => {
 		return {
-			hashingAlgorithm: configFS.get('hashingAlgorithm'),
+			hashingAlgorithm: configs.get('hashingAlgorithm'),
 			password: '',
 		};
 	}, []);
@@ -41,8 +41,8 @@ const InitializeConfig = () => {
 };
 
 export default () => {
-	const { configFS } = Deps;
-	const alreadyInitialized = configFS.get('passwordHash') !== '';
+	const { configs } = Deps;
+	const alreadyInitialized = useMemo(() => configs.get('passwordHash') !== '', []);
 
 	if (alreadyInitialized) {
 		return (
@@ -52,7 +52,7 @@ export default () => {
 					{'The config file is located at:'}
 					<Newline />
 					<Text color="cyan" underline>
-						{configFS.path}
+						{configs.path}
 					</Text>
 					<Newline />
 				</Text>

@@ -12,7 +12,7 @@ export interface IUpdateConfigProps {
 }
 
 export const UpdateConfig: React.FC<IUpdateConfigProps> = ({ onFinish, values }) => {
-	const { configFS, savePassword } = Deps;
+	const { configs, savePassword } = Deps;
 	const [done, setDone] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -20,7 +20,7 @@ export const UpdateConfig: React.FC<IUpdateConfigProps> = ({ onFinish, values })
 	}, [done]);
 
 	const saving = useMutation(async () => {
-		configFS.set('hashingAlgorithm', values.hashingAlgorithm);
+		configs.set('hashingAlgorithm', values.hashingAlgorithm);
 		await savePassword.handle(values.password);
 		setDone(true);
 	});

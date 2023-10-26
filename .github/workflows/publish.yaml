@@ -5,59 +5,47 @@ on:
             - '**'
 
 jobs:
-    read_tags:
+    ci:
         runs-on: ubuntu-latest
         steps:
-            - name: Get Ref
-              run: |
-                  echo ref = ${{ github.ref }}
-                  echo ref_name = ${{ github.ref_name }}
-                  echo ref_protected = ${{ github.ref_protected }}
-    # ci:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v3
+            - name: Checkout
+              uses: actions/checkout@v3
 
-    #         - name: Installing Dependencies
-    #           run: yarn
+            - name: Installing Dependencies
+              run: yarn
 
-    #         - name: Build
-    #           run: yarn build
+            - name: Build
+              run: yarn build
 
-    #         - name: Pre-Publish
-    #           run: yarn prepublishOnly
-    # publish:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v3
+            - name: Pre-Publish
+              run: yarn prepublishOnly
+    publish:
+        runs-on: ubuntu-latest
+        needs: ci
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
 
-    #         - name: Setting Up .npmrc file to publish to npm
-    #           run: node ./bin/generate-npmrc.js
-    #           env:
-    #               NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+            - name: Setting Up .npmrc file to publish to npm
+              run: node ./bin/generate-npmrc.js
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
-    #         - name: Installing Dependencies
-    #           run: yarn
+            - name: Installing Dependencies
+              run: yarn
 
-    #         - name: Build
-    #           run: yarn build
+            - name: Build
+              run: yarn build
 
-    #         - name: Pre-Publish
-    #           run: yarn prepublishOnly
-
-    #         - name: Copy PackageJson
-    #           run: node ./bin/copy-package-json.js
-
-    #         - name: Publishing
-    #           run: cd ./dist && npm publish --access public
-    #           env:
-    #               NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+            - name: Publishing
+              run: npm publish --access public
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
     create_github_release:
         name: Create GitHub Release
         runs-on: ubuntu-latest
+        needs: publish
         permissions:
             contents: write
         steps:

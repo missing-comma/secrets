@@ -1,6 +1,6 @@
 {
 	"name": "@missing-comma/secrets",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"scripts": {
 		"start": "node ./dist/secrets.js",
 		"ts-start": "ts-node --esm  ./src/index.ts",
@@ -9,7 +9,7 @@
 		"build:ci": "tsc -p ./tsconfig.ci.json && rm -rf ./dist/__tests__",
 		"dev": "tsc --watch",
 		"lint": "echo 'haha lint, nice one'",
-		"format": "prettier ./src --config ./.prettierrc --write",
+		"format": "echo prettier ./src --config ./.prettierrc --write",
 		"testo": "prettier ./src --config ./.prettierrc --check . && xo && ava",
 		"test": "echo 'haha test, nice one'",
 		"prepublishOnly": "echo npm run test && npm run lint",

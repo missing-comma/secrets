@@ -27,7 +27,7 @@ jobs:
               uses: actions/checkout@v3
 
             - name: Setting Up .npmrc file to publish to npm
-              run: node ./bin/generate-npmrc.js
+              run: node ./bin/generate-npmrc.cjs
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 

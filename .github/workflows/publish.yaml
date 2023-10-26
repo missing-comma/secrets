@@ -91,5 +91,5 @@ jobs:
                   commit: 'main'
                   tag: ${{ github.ref_name }}
                   token: ${{ secrets.GITHUB_TOKEN }}
-                  name: 'Release ${{ github.ref_name }}'
+                  name: '${{ github.ref_name }}'
                   allowUpdates: true

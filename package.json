@@ -1,6 +1,6 @@
 {
 	"name": "@missing-comma/secrets",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"scripts": {
 		"start": "node ./dist/secrets.js",
 		"ts-start": "ts-node --esm  ./src/index.ts",
@@ -15,7 +15,7 @@
 		"prepublishOnly": "echo npm run test && npm run lint",
 		"preversion": "echo npm run lint",
 		"version": "echo npm run build:ci && npm run format && git add -A src",
-		"postversion": "echo git push && git push --tags"
+		"postversion": "git push && git push --tags"
 	},
 	"bin": "dist/secrets.js",
 	"type": "module",

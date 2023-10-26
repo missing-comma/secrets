@@ -1,0 +1,31 @@
+name: '🏗  Setup Node and Yarn'
+description: 'Setup Node, and run yarn install'
+runs:
+    using: composite
+    steps:
+        - name: 🏗 Setup Node
+          uses: actions/setup-node@v3
+          with:
+              node-version: 18
+              cache: yarn
+
+        # Extracted from https://dev.to/mattpocockuk/how-to-cache-nodemodules-in-github-actions-with-yarn-24eh
+        # This here, instead of using just the actions/setup-node, made our
+        # yarn install average time go from ~2m to ~20secs
+        - name: 🏗 Restoring Node Modules from Cache
+          id: yarn-cache
+          uses: actions/cache@v3
+          with:
+              path: '**/node_modules'
+              key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+        - name: 📦 Install dependencies
+          shell: bash
+          if: ${{ steps.yarn-cache.outputs.cache-hit }} != 'true'
+          run: yarn --frozen-lockfile
+
+        - name: 🎉 Skip install dependencies
+          shell: bash
+          if: ${{ steps.yarn-cache.outputs.cache-hit }} == 'true'
+          run: echo Node_modules cache hit. Skipping installing node_modules
+

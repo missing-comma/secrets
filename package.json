@@ -1,6 +1,6 @@
 {
 	"name": "@missing-comma/secrets",
-	"version": "1.9.4",
+	"version": "1.9.5",
 	"scripts": {
 		"start": "node ./dist/secrets.js",
 		"ts-start": "ts-node --esm  ./src/index.ts",

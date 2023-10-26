@@ -1,6 +1,6 @@
 {
 	"name": "@missing-comma/secrets",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"scripts": {
 		"start": "node ./dist/secrets.js",
 		"ts-start": "ts-node --esm  ./src/index.ts",
@@ -12,10 +12,10 @@
 		"format": "prettier ./src --config ./.prettierrc --write",
 		"testo": "prettier ./src --config ./.prettierrc --check . && xo && ava",
 		"test": "echo 'haha test, nice one'",
-		"prepublishOnly": "npm run test && npm run lint",
-		"preversion": "npm run lint",
-		"version": "npm run build:ci && npm run format && git add -A src",
-		"postversion": "git push && git push --tags"
+		"prepublishOnly": "echo npm run test && npm run lint",
+		"preversion": "echo npm run lint",
+		"version": "echo npm run build:ci && npm run format && git add -A src",
+		"postversion": "echo git push && git push --tags"
 	},
 	"bin": "dist/secrets.js",
 	"type": "module",

@@ -19,7 +19,11 @@ export const TextBox: React.FC<ITextBoxProps> = (props) => {
 			borderStyle="round"
 			{...boxProps}
 		>
-			<Text color={color}>{children}</Text>
+			{['number', 'boolean', 'string'].includes(typeof children) ? (
+				<Text color={color}>{children}</Text>
+			) : (
+				children
+			)}
 		</Box>
 	);
 };

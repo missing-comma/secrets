@@ -12,4 +12,5 @@ export const Config = configFactory({
 const isTest = Config.env.includes('local', 'test');
 if (isTest) {
 	Config.resourcesDir.meta.set('secrets_test');
+	console.log('-- Test password = [1234]');
 }

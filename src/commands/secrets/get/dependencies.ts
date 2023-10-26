@@ -8,6 +8,7 @@ export default makeDependencyLoader(() => {
 	const secrets = new SecretFS();
 	const config = new ConfigFS();
 	return {
+		config: config.get('readSecret'),
 		checkHash: new PasswordCheck(config),
 		get: new SecretGetValue(secrets),
 		checkExists: new SecretCheckExists(secrets),

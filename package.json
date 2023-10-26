@@ -5,7 +5,8 @@
 		"start": "node ./dist/secrets.js",
 		"ts-start": "ts-node --esm  ./src/index.ts",
 		"setup": "npm i -g .",
-		"build": "tsc",
+		"build": "rm -rf ./dist && tsc",
+		"build:ci": "tsc -p ./tsconfig.ci.json && rm -rf ./dist/__tests__",
 		"dev": "tsc --watch",
 		"lint": "echo 'haha lint, nice one'",
 		"format": "prettier ./src --config ./.prettierrc --write",
@@ -13,7 +14,7 @@
 		"test": "echo 'haha test, nice one'",
 		"prepublishOnly": "npm run test && npm run lint",
 		"preversion": "npm run lint",
-		"version": "npm run build && npm run format && git add -A src",
+		"version": "npm run build:ci && npm run format && git add -A src",
 		"postversion": "git push && git push --tags"
 	},
 	"bin": "dist/secrets.js",

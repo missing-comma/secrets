@@ -1,0 +1,54 @@
+name: Publish Package to npmjs
+on:
+    push:
+
+jobs:
+    read_tags:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get Ref
+              run: |
+                  echo ref = ${{ github.ref }}
+                  echo ref_name = ${{ github.ref_name }}
+                  echo ref_protected = ${{ github.ref_protected }}
+    # ci:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v3
+
+    #         - name: Installing Dependencies
+    #           run: yarn
+
+    #         - name: Build
+    #           run: yarn build
+
+    #         - name: Pre-Publish
+    #           run: yarn prepublishOnly
+    # publish:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v3
+
+    #         - name: Setting Up .npmrc file to publish to npm
+    #           run: node ./bin/generate-npmrc.js
+    #           env:
+    #               NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+    #         - name: Installing Dependencies
+    #           run: yarn
+
+    #         - name: Build
+    #           run: yarn build
+
+    #         - name: Pre-Publish
+    #           run: yarn prepublishOnly
+
+    #         - name: Copy PackageJson
+    #           run: node ./bin/copy-package-json.js
+
+    #         - name: Publishing
+    #           run: cd ./dist && npm publish --access public
+    #           env:
+    #               NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
